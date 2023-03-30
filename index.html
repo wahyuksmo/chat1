@@ -13,7 +13,7 @@
             <div class="card mt-5">
                 <div class="card-body">
 
-                    <h1 class="text-center mb-5">Privasi terjamin nomor 1</h1>
+                  <h5><span id="totalUserOnline"></span></h5>
 
                     <div id="message_list">
                        
@@ -44,7 +44,6 @@
 
     let socket = io()
     socket.emit('join')
-
     socket.on('message', (param) => {
         $("#message_list").append(
             ` <div class="card  mt-3">
@@ -54,11 +53,9 @@
                         </div>`
         )
     })
-
     socket.on('countUserOnline', (countUserOnline) => {
-        $("#totalUserOnline").text(countUserOnline)
+        $("#totalUserOnline").text(countUserOnline + " Users online")
     })
-
 
     $("#sendMessage").click(() => {
         socket.emit('message', {
